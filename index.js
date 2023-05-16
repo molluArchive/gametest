@@ -1,28 +1,55 @@
-console.log('asd')
-
+const root = document.getElementById('root')
 const target = document.getElementById('target')
-const array = ['q','w','e','r','a','s','d','f']
+const stat = {
+    stat: 'stay',
+    key: 'A',
+    count: 0,
+}
 
-const makeDiv = () => {
-    let div = document.createElement('div')
-    let length = 120
-    setDiv(div,length,"blue")
+const makeDiv = (speed) => {
+    if(stat.stat !== 'end'){
+
+        let div = document.createElement('div')
+        let length = 150
+    stat.stat = 'fail'
+    random()
+    setDiv(div,length)
     div.style.opacity = 0.5
     target.appendChild(div)
     const a = setInterval(()=>{
-        length -= 0.3
+        length -= speed
         setDiv(div,length)
-        if(length < 0){
-            clearInterval(a)
+        if(length < 105 && stat.stat !== 'end'){
+            stat.stat = 'success'
         }
-    },30)
+        if(length < 50 && stat.stat !== 'end'){
+            clearInterval(a)
+            target.replaceChildren()
+            if(stat.stat === 'success'){
+                fail()
+            }else if(stat.stat === 'stay'){
+                success()
+            }
+            fail()
+        }
+    },1000/30)
+}
+}
+
+const array = ['Q','W','E','R','A','S','D','F']
+const random = () => {
+    let a = Math.floor(Math.random()*8)
+    stat.key = array[a]
+    target.textContent = array[a]
 }
 
 const setDiv = (div,length,color = 'none') => {
     div.style.width = length + 'px'
     div.style.height = length + 'px'
     div.style.borderRadius = length/2 + 'px'
-    div.style.position = 'relative'
+    div.style.position = 'absolute'
+    div.style.border = 'yellow solid 2px'
+    div.style.zIndex = 3
     div.style.top = (100 - length) /2 + 'px'
     div.style.left = (100 - length) /2 + 'px'
     if(color !== 'none'){
@@ -30,4 +57,59 @@ const setDiv = (div,length,color = 'none') => {
     }
 }
 
-makeDiv()
+const success = () => {
+    stat.stat = 'stay'
+    stat.key = 'stay'
+    console.log('ok')
+}
+const fail = () => {
+    if(stat.stat !== 'end'){
+
+        stat.stat = 'end'
+        stat.key = 'stay'
+    let top = 100
+    let a =setInterval(() => {
+        top += 10
+        target.style.top = top + 'px'
+        if(top>1000){
+            clearInterval(a)
+            let div = document.createElement("div")
+            div.style.width = '100vw'
+            div.style.height = '100vh'
+            div.style.backgroundColor = 'white'
+            root.appendChild(div)
+        }
+    }, 1000/30);
+}
+}
+
+window.addEventListener('keydown',(e)=>{
+    let key = e.key.toUpperCase()
+    if(stat.stat !== 'stay'){
+        if(stat.key === key && stat.stat === 'success'){
+            success()
+        } else {
+            fail()
+        }
+    }
+})
+
+const start = (arr) => {
+    let time = 0 
+    arr.map((item,index)=>{
+        setTimeout(() => {
+            makeDiv(item.spd)
+        }, time + (item.time * 1000));
+        time += item.time * 1000
+    })
+}
+
+let setting =[
+    {spd:2,time:3},
+    {spd:2,time:2},
+    {spd:3,time:3},
+]
+
+
+
+start(setting)
