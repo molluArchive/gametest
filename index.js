@@ -18,17 +18,20 @@ const makeDiv = (speed) => {
         const a = setInterval(()=>{
             length -= speed
             setDiv(div,length)
+            if(stat.stat === 'stay'){
+                clearInterval(a)
+                target.replaceChildren()
+            }
             if(length < 105 && stat.stat !== 'end' && stat.stat !== 'stay'){
                 stat.stat = 'success'
             }
             if(length < 60 && stat.stat !== 'end'){
                 clearInterval(a)
                 target.replaceChildren()
-                console.log(stat.stat)
                 if(stat.stat === 'success'){
                     fail()
                 }else if(stat.stat === 'stay'){
-                    console.log('aa')
+                    console.log('성공이라고띄우기')
                 }
             }
         },1000/30)
@@ -78,6 +81,7 @@ const fail = () => {
 
 window.addEventListener('keydown',(e)=>{
     let key = e.key.toUpperCase()
+    console.log(e.key)
     if(stat.stat !== 'stay'){
         if(stat.key === key && stat.stat === 'success'){
             success()
@@ -90,7 +94,6 @@ window.addEventListener('keydown',(e)=>{
 const start = (arr) => {
     let time = 0 
     arr.map((item,index)=>{
-        console.log(time)
         setTimeout(() => {
             makeDiv(item.spd)
         }, time + (item.time * 1000));
