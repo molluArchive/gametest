@@ -71,11 +71,6 @@ const fail = () => {
         target.style.top = top + 'px'
         if(top>1000){
             clearInterval(a)
-            let div = document.createElement("div")
-            div.style.width = '100vw'
-            div.style.height = '100vh'
-            div.style.backgroundColor = 'white'
-            root.appendChild(div)
         }
     }, 1000/30);
 }
@@ -105,10 +100,13 @@ const start = (arr) => {
 
 let setting =[
     {spd:2,time:3},
-    {spd:2,time:2},
+    {spd:2.5,time:2},
     {spd:3,time:3},
     {spd:3,time:2},
     {spd:3.5,time:2},
+    {spd:3.8,time:1.5},
+    {spd:4.1,time:2},
+    {spd:4.2,time:2},
 ]
 
 
