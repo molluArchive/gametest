@@ -8,32 +8,31 @@ const stat = {
 
 const makeDiv = (speed) => {
     if(stat.stat !== 'end'){
-
         let div = document.createElement('div')
         let length = 150
-    stat.stat = 'fail'
-    random()
-    setDiv(div,length)
-    div.style.opacity = 0.5
-    target.appendChild(div)
-    const a = setInterval(()=>{
-        length -= speed
+        stat.stat = 'fail'
+        random()
         setDiv(div,length)
-        if(length < 105 && stat.stat !== 'end'){
-            stat.stat = 'success'
-        }
-        if(length < 50 && stat.stat !== 'end'){
-            clearInterval(a)
-            target.replaceChildren()
-            if(stat.stat === 'success'){
-                fail()
-            }else if(stat.stat === 'stay'){
-                success()
+        div.style.opacity = 0.5
+        target.appendChild(div)
+        const a = setInterval(()=>{
+            length -= speed
+            setDiv(div,length)
+            if(length < 105 && stat.stat !== 'end' && stat.stat !== 'stay'){
+                stat.stat = 'success'
             }
-            fail()
-        }
-    },1000/30)
-}
+            if(length < 60 && stat.stat !== 'end'){
+                clearInterval(a)
+                target.replaceChildren()
+                console.log(stat.stat)
+                if(stat.stat === 'success'){
+                    fail()
+                }else if(stat.stat === 'stay'){
+                    console.log('aa')
+                }
+            }
+        },1000/30)
+    }
 }
 
 const array = ['Q','W','E','R','A','S','D','F']
@@ -59,7 +58,6 @@ const setDiv = (div,length,color = 'none') => {
 
 const success = () => {
     stat.stat = 'stay'
-    stat.key = 'stay'
     console.log('ok')
 }
 const fail = () => {
@@ -97,6 +95,7 @@ window.addEventListener('keydown',(e)=>{
 const start = (arr) => {
     let time = 0 
     arr.map((item,index)=>{
+        console.log(time)
         setTimeout(() => {
             makeDiv(item.spd)
         }, time + (item.time * 1000));
