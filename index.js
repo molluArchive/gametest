@@ -107,6 +107,8 @@ let setting =[
     {spd:2,time:3},
     {spd:2,time:2},
     {spd:3,time:3},
+    {spd:3,time:2},
+    {spd:3.5,time:2},
 ]
 
 
