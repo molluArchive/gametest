@@ -12,6 +12,9 @@ const makeDiv = (speed) => {
         let length = 150
         stat.stat = 'fail'
         random()
+        div.style.position = 'absolute'
+        div.style.border = 'yellow solid 1px'
+        div.style.zIndex = 3
         setDiv(div,length)
         div.style.opacity = 0.5
         target.appendChild(div)
@@ -24,6 +27,7 @@ const makeDiv = (speed) => {
             }
             if(length < 105 && stat.stat !== 'end' && stat.stat !== 'stay'){
                 stat.stat = 'success'
+                div.style.border = '0px'
             }
             if(length < 60 && stat.stat !== 'end'){
                 clearInterval(a)
@@ -42,16 +46,16 @@ const array = ['Q','W','E','R','A','S','D','F']
 const random = () => {
     let a = Math.floor(Math.random()*8)
     stat.key = array[a]
-    target.textContent = array[a]
+    let div = document.createElement('div')
+    div.className = 'key'
+    div.textContent = array[a]
+    target.appendChild(div)
 }
 
 const setDiv = (div,length,color = 'none') => {
     div.style.width = length + 'px'
     div.style.height = length + 'px'
     div.style.borderRadius = length/2 + 'px'
-    div.style.position = 'absolute'
-    div.style.border = 'yellow solid 2px'
-    div.style.zIndex = 3
     div.style.top = (100 - length) /2 + 'px'
     div.style.left = (100 - length) /2 + 'px'
     if(color !== 'none'){
