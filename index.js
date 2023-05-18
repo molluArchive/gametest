@@ -4,16 +4,29 @@ const stat = {
     stat: 'stay',
     key: 'A',
     count: 0,
+    count_max: 0,
 }
+let pie = document.createElement('div')
+pie.style.position = 'absolute'
 
-const makeDiv = (speed) => {
+
+const makeDiv = (speed,count) => {
     if(stat.stat !== 'end'){
         let div = document.createElement('div')
-        let length = 150
         stat.stat = 'fail'
+        stat.count = count
+        stat.count_max = count
         random()
         div.style.position = 'absolute'
+        let length = 150
         div.style.border = 'yellow solid 3px'
+        if(count>1){
+            length = 120
+            div.style.border = 'purple solid 3px';
+            pie.className = "pie no-round";
+            pie.style.setProperty("--p",0)
+            target.appendChild(pie)
+        }
         div.style.zIndex = 3
         setDiv(div,length)
         div.style.opacity = 0.5
@@ -39,6 +52,8 @@ const makeDiv = (speed) => {
         },1000/30)
     }
 }
+
+
 
 const array = ['Q','W','E','R','A','S','D','F']
 const random = () => {
@@ -74,6 +89,7 @@ const fail = () => {
         stat.key = 'stay'
         target.style.border = '0px';
         target.style.backgroundColor = 'rgba(0,0,0,0)';
+        root.style.backgroundImage = URL('./dragon.jpg')
         
         let img = document.createElement('img');
         img.animate([
@@ -82,6 +98,9 @@ const fail = () => {
         ], 2000)
         img.src = './dragon.jpg'
         target.appendChild(img)
+        setTimeout(() => {
+            img.remove()
+        }, 2000);
     }
 }
 
@@ -89,7 +108,13 @@ window.addEventListener('keydown',(e)=>{
     let key = e.key.toUpperCase()
     if(stat.stat !== 'stay'){
         if(stat.key === key && stat.stat === 'success'){
-            success()
+            if(stat.count>1){
+                stat.count--
+                let rate = (stat.count_max - stat.count) / stat.count_max * 100
+                pie.style.setProperty("--p",rate)
+            } else {
+                success()
+            }
         } else {
             fail()
         }
@@ -102,21 +127,21 @@ const start = (arr) => {
     let time = 0 
     arr.map((item,index)=>{
         setTimeout(() => {
-            makeDiv(item.spd)
+            makeDiv(item.spd,item.count)
         }, time + (item.time * 1000));
         time += item.time * 1000
     })
 }
 
 let setting =[
-    {spd:2,time:3},
-    {spd:2.5,time:2},
-    {spd:3,time:3},
-    {spd:3,time:2},
-    {spd:3.5,time:2},
-    {spd:3.8,time:1.5},
-    {spd:4.1,time:2},
-    {spd:4.2,time:2},
+    {spd:2.5,time:2,count:1},
+    {spd:2.5,time:2,count:1},
+    {spd:3,time:3,count:1},
+    {spd:1,time:2,count:4},
+    {spd:3.5,time:4,count:1},
+    {spd:3.8,time:1.5,count:1},
+    {spd:4.1,time:2,count:1},
+    {spd:1,time:2,count:8},
 ]
 
 const start_button = document.getElementById('start')
