@@ -1,131 +1,152 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>test</title>
     <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-        #root {
-            height: 500px;
-            background-image: url('./bgimg.jpg');
-            background-repeat : no-repeat;
-            background-size : 800px;
-            z-index: 0;
-            overflow: hidden;
-        }
-        #target {
-            width: 100px;
-            height: 100px;
-            border: 1px white solid;
-            background-color: rgba(222, 222, 222, 0.3);
-            position: relative;
-            top:230px;
-            left:210px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color:black;
-            z-index: 10;
-        }
-        #target > img {
-            width: 160px;
-            height: 160px;
-            position: relative;
-            transition: all ease 1s;
-        }
-        #text{
-            width: 600px;
-            height: 400px;
-            background-color: #333;
-            position: absolute;
-            top:80px;
-            left:100px;
-            z-index: 20;
-            padding: 50px;
-            color: #fff;
-        }
-        #start{
-            width: 40px;
-            height: 20px;
-        }
-        .key{
-            background-color: #fff;
-            width: 45px;
-            height: 45px;
-            border-radius: 6px;
-            border: 3px black solid;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            font-weight: 800;
-        }
-        .line{
-            position:'absolute';
-            border: 'yellow solid 1px';
-        }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      #root {
+        height: 500px;
+        background-image: url("./bgimg.jpg");
+        background-repeat: no-repeat;
+        background-size: 800px;
+        z-index: 0;
+        overflow: hidden;
+      }
+      #target {
+        width: 100px;
+        height: 100px;
+        border: 1px white solid;
+        background-color: rgba(222, 222, 222, 0.3);
+        position: relative;
+        top: 230px;
+        left: 210px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        z-index: 10;
+      }
+      #target > img {
+        width: 160px;
+        height: 160px;
+        position: relative;
+        transition: all ease 1s;
+      }
+      #text {
+        width: 600px;
+        height: 400px;
+        background-color: #333;
+        border: 3px rgb(222, 222, 222) solid;
+        border-radius: 10px;
+        position: absolute;
+        top: 40px;
+        left: 100px;
+        z-index: 20;
+        padding: 50px;
+        color: #fff;
+      }
+      #text > p {
+        font-size: 18px;
+      }
+      #start {
+        width: 100px;
+        height: 40px;
+        font-size: 20px;
+        border: 3px rgb(222, 222, 222) solid;
+        background-color: rgb(122, 122, 122);
+        color: rgb(222, 222, 222);
+        border-radius: 10px;
+      }
+      .key {
+        background-color: #fff;
+        width: 45px;
+        height: 45px;
+        border-radius: 6px;
+        border: 3px black solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        font-weight: 800;
+      }
+      .line {
+        position: "absolute";
+        border: "yellow solid 1px";
+      }
+      .pie {
+        --p: 0;
+        --b: 10px;
+        --c: #f0f;
+        --w: 150px;
 
-.pie {
-  --p:0;
-  --b:10px;
-  --c:purple;
-  --w:150px;
-  
-  width:var(--w);
-  aspect-ratio:1;
-  position:relative;
-  display:inline-grid;
-  margin:5px;
-  place-content:center;
-  font-size:25px;
-  font-weight:bold;
-  font-family:sans-serif;
-}
-.pie:before, .pie:after {
-  content:"";
-  position:absolute;
-  border-radius:50%;
-}
-.pie:before {
-  inset:0;
-  background:
-    radial-gradient(farthest-side,var(--c) 98%,#0000) top/var(--b) var(--b) no-repeat,
-    conic-gradient(var(--c) calc(var(--p)*1%),#0000 0);
-  -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
-          mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
-}
-.pie:after {
-  inset:calc(50% - var(--b)/2);
-  background:var(--c);
-  transform:rotate(calc(var(--p)*3.6deg)) translateY(calc(50% - var(--w)/2));
-}
-.no-round:before {
-  background-size:0 0,auto;
-}
-.no-round:after {
-  content:none;
-}
+        width: var(--w);
+        aspect-ratio: 1;
+        position: relative;
+        display: inline-grid;
+        margin: 5px;
+        place-content: center;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: sans-serif;
+      }
+      .pie:before,
+      .pie:after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+      }
+      .pie:before {
+        inset: 0;
+        background: radial-gradient(farthest-side, var(--c) 98%, #0000)
+            top/var(--b) var(--b) no-repeat,
+          conic-gradient(var(--c) calc(var(--p) * 1%), #0000 0);
+        -webkit-mask: radial-gradient(
+          farthest-side,
+          #0000 calc(99% - var(--b)),
+          #000 calc(100% - var(--b))
+        );
+        mask: radial-gradient(
+          farthest-side,
+          #0000 calc(99% - var(--b)),
+          #000 calc(100% - var(--b))
+        );
+      }
+      .pie:after {
+        inset: calc(50% - var(--b) / 2);
+        background: var(--c);
+        transform: rotate(calc(var(--p) * 3.6deg))
+          translateY(calc(50% - var(--w) / 2));
+      }
+      .no-round:before {
+        background-size: 0 0, auto;
+      }
+      .no-round:after {
+        content: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="root">
-        <div id="target"></div>
-        <div id="text">
-            <p>모로스레이드 3관문 [비룡을 타고] 연습입니다.</p>
-            <p>줄어드는 고리가 원에 닿은 후 알맞은 키를 눌러야합니다.</p>
-            <p>4,8번째는 보라색 고리가 등장하고, 연타패턴입니다.</p>
-            <p>4번째는 4회, 8번째는 10회 눌러야합니다.</p>
-            <p>총 8회 클리어하면 성공입니다.</p>
-            <button id="start">시작</button>
-        </div>
+      <div id="target"></div>
+      <div id="text">
+        <p>모로스레이드 3관문 [비룡을 타고] 연습입니다.</p>
+        <br />
+        <p>줄어드는 고리가 원에 닿은 후 알맞은 키를 눌러야합니다.</p>
+        <p>4,8번째는 보라색 고리가 등장하고, 연타패턴입니다.</p>
+        <p>4번째는 4회, 8번째는 10회 눌러야합니다.</p>
+        <p>총 8회 클리어하면 성공입니다.</p>
+        <br />
+        <button id="start">시작</button>
+      </div>
     </div>
-</body>
-<script src="./index.js"></script>
+  </body>
+  <script src="./index.js"></script>
 </html>
