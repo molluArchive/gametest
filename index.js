@@ -203,14 +203,14 @@ const start = (arr) => {
 };
 
 let setting = [
-  { spd: 2.5, time: 2, count: 1 },
-  //   { spd: 3, time: 2, count: 1 },
-  //   { spd: 3, time: 3, count: 1 },
-  //   { spd: 1, time: 2, count: 4 },
-  //   { spd: 3.5, time: 4, count: 1 },
-  //   { spd: 3.8, time: 1.5, count: 1 },
-  //   { spd: 4.1, time: 2, count: 1 },
-  //   { spd: 1, time: 2, count: 8 },
+  { spd: 2.7, time: 2, count: 1 },
+  { spd: 3, time: 2, count: 1 },
+  { spd: 3.2, time: 3, count: 1 },
+  { spd: 1, time: 2, count: 4 },
+  { spd: 3.5, time: 4, count: 1 },
+  { spd: 3.8, time: 1.5, count: 1 },
+  { spd: 4.1, time: 2, count: 1 },
+  { spd: 1, time: 2, count: 8 },
 ];
 
 const start_button = document.getElementById("start");
