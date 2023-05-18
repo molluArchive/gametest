@@ -12,11 +12,10 @@
             box-sizing: border-box;
         }
         #root {
-            width: 100vw;
-            height: 100vh;
+            height: 500px;
             background-image: url('./bgimg.jpg');
             background-repeat : no-repeat;
-            background-size : 100vh;
+            background-size : 800px;
             z-index: 0;
             overflow: hidden;
         }
@@ -26,14 +25,32 @@
             border: 1px white solid;
             background-color: rgba(222, 222, 222, 0.3);
             position: relative;
-            top:100px;
-            left:100px;
+            top:230px;
+            left:210px;
             border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             color:black;
             z-index: 10;
+        }
+        #target > img {
+            width: 160px;
+            height: 160px;
+            position: relative;
+            transition: all ease 1s;
+        }
+        #text{
+            width: 600px;
+            height: 400px;
+            background-color: #333;
+            position: absolute;
+            top:80px;
+            left:100px;
+            z-index: 20;
+            padding: 50px;
+            text-align: center;
+            color: #fff;
         }
         .key{
             background-color: #fff;
@@ -56,6 +73,10 @@
 <body>
     <div id="root">
         <div id="target"></div>
+        <div id="text">
+            <p>설명설명</p>
+            <button id="start">시작</button>
+        </div>
     </div>
 </body>
 <script src="./index.js"></script>

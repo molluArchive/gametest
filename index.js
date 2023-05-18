@@ -13,7 +13,7 @@ const makeDiv = (speed) => {
         stat.stat = 'fail'
         random()
         div.style.position = 'absolute'
-        div.style.border = 'yellow solid 1px'
+        div.style.border = 'yellow solid 3px'
         div.style.zIndex = 3
         setDiv(div,length)
         div.style.opacity = 0.5
@@ -34,8 +34,6 @@ const makeDiv = (speed) => {
                 target.replaceChildren()
                 if(stat.stat === 'success'){
                     fail()
-                }else if(stat.stat === 'stay'){
-                    console.log('성공이라고띄우기')
                 }
             }
         },1000/30)
@@ -65,27 +63,30 @@ const setDiv = (div,length,color = 'none') => {
 
 const success = () => {
     stat.stat = 'stay'
-    console.log('ok')
+    target.style.backgroundColor = 'rgba(80, 177, 0, 0.4)'
+    setTimeout(() => {
+        target.style.backgroundColor = 'rgba(222, 222, 222, 0.3)'
+    }, 500);
 }
 const fail = () => {
     if(stat.stat !== 'end'){
-
         stat.stat = 'end'
         stat.key = 'stay'
-    let top = 100
-    let a =setInterval(() => {
-        top += 10
-        target.style.top = top + 'px'
-        if(top>1000){
-            clearInterval(a)
-        }
-    }, 1000/30);
-}
+        target.style.border = '0px';
+        target.style.backgroundColor = 'rgba(0,0,0,0)';
+        
+        let img = document.createElement('img');
+        img.animate([
+            { top:"0px", left: "0px", transform: "rotate(0deg)" },
+            { top:"600px", left: "200px", transform: "rotate(360deg)" }
+        ], 2000)
+        img.src = './dragon.jpg'
+        target.appendChild(img)
+    }
 }
 
 window.addEventListener('keydown',(e)=>{
     let key = e.key.toUpperCase()
-    console.log(e.key)
     if(stat.stat !== 'stay'){
         if(stat.key === key && stat.stat === 'success'){
             success()
@@ -96,6 +97,8 @@ window.addEventListener('keydown',(e)=>{
 })
 
 const start = (arr) => {
+    stat.stat = 'stay',
+    stat.count = 0
     let time = 0 
     arr.map((item,index)=>{
         setTimeout(() => {
@@ -116,6 +119,10 @@ let setting =[
     {spd:4.2,time:2},
 ]
 
+const start_button = document.getElementById('start')
+const text = document.getElementById('text')
 
-
-start(setting)
+start_button.addEventListener('click',()=>{
+    text.remove()
+    start(setting)
+})
