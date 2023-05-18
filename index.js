@@ -85,6 +85,7 @@ const success = () => {
     target.style.border = "0px";
     let img = document.createElement("img");
     img.id = "img";
+    img.style.borderRadius = "30px";
     img.style.position = "absolute";
     img.style.top = "100px";
     img.style.left = "150px";
@@ -94,8 +95,8 @@ const success = () => {
     let button = document.createElement("button");
     button.id = "start";
     button.style.position = "absolute";
-    button.style.top = "330px";
-    button.style.left = "300px";
+    button.style.top = "350px";
+    button.style.left = "340px";
     button.textContent = "재시작";
     root.appendChild(button);
     button.addEventListener("click", () => {
@@ -203,13 +204,13 @@ const start = (arr) => {
 
 let setting = [
   { spd: 2.5, time: 2, count: 1 },
-  { spd: 3, time: 2, count: 1 },
-  { spd: 3, time: 3, count: 1 },
-  { spd: 1, time: 2, count: 4 },
-  { spd: 3.5, time: 4, count: 1 },
-  { spd: 3.8, time: 1.5, count: 1 },
-  { spd: 4.1, time: 2, count: 1 },
-  { spd: 1, time: 2, count: 8 },
+  //   { spd: 3, time: 2, count: 1 },
+  //   { spd: 3, time: 3, count: 1 },
+  //   { spd: 1, time: 2, count: 4 },
+  //   { spd: 3.5, time: 4, count: 1 },
+  //   { spd: 3.8, time: 1.5, count: 1 },
+  //   { spd: 4.1, time: 2, count: 1 },
+  //   { spd: 1, time: 2, count: 8 },
 ];
 
 const start_button = document.getElementById("start");
